@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-
 import '../../core/colors.dart';
 import '../../core/sizedBox.dart';
 import '../filimadding/filimAdding.dart';
 
 class AdminHomePage extends StatelessWidget {
-  const AdminHomePage({Key? key});
+   AdminHomePage({Key? key});
+
+    
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
-          SafeArea(
-            child: Container(
+          const SafeArea(
+            child: SizedBox(
               height: 50,
               child: Text('Admin Home page',style: TextStyle(color: textwhite,fontSize: 20,fontWeight: FontWeight.bold),),
             ),
@@ -30,7 +32,7 @@ class AdminHomePage extends StatelessWidget {
                   mainAxisSpacing: 20,
                   crossAxisSpacing: 30,
                 ),
-                children:  [
+                children:  <Widget>[
                 
                   InkWell(
                   onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) =>const FilimAdding(),)),
@@ -50,6 +52,7 @@ class AdminHomePage extends StatelessWidget {
                 //     image: 'assets/images/revenue(1).png',
                 //     name: 'Revenue',
                 //   ),
+             
               
                 ],
               ),
@@ -60,6 +63,9 @@ class AdminHomePage extends StatelessWidget {
     );
   }
 }
+
+
+
 
 class GridviewCard extends StatelessWidget {
   const GridviewCard({

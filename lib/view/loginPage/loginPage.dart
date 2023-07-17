@@ -2,9 +2,10 @@ import 'package:appadmin/core/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/sizedBox.dart';
-import '../../controller/provider/functions/functions.dart';
+import '../../controller/provider/dialogues/showdialogue.dart';
 import '../../controller/provider/loginpage/loginPageProvider.dart';
 import '../widgets/textFormFIeld1.dart';
 
@@ -15,6 +16,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<LoginProvider>(context,listen: false);
     //final provider2=Provider.of<>(context);
+   
 
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -63,6 +65,8 @@ class LoginPage extends StatelessWidget {
                   
                     await  provider.loginAdmin(email: provider.userNameController.text.trim(),
                        password: provider.passWordController.text.trim(), context: context);
+                       setlogged(value: true);
+                       
                      
                       // ignore: use_build_context_synchronously
                     } else {
@@ -94,3 +98,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
+ Future setlogged({required bool value}) async{
+      final SharedPreferences shared_preferences=await SharedPreferences.getInstance();
+      shared_preferences.setBool("login",value );
+    }

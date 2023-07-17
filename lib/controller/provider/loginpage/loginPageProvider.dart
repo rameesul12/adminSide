@@ -2,7 +2,7 @@
 
 import 'dart:convert';
 
-import 'package:appadmin/controller/provider/functions/functions.dart';
+import 'package:appadmin/controller/provider/dialogues/showdialogue.dart';
 import 'package:appadmin/view/dashbord/homepage.dart';
 import 'dart:developer';
 import 'package:appadmin/serverSide/apiConfiguration.dart';
@@ -16,7 +16,7 @@ class LoginProvider extends ChangeNotifier{
    TextEditingController passWordController=TextEditingController();
    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
     FlutterSecureStorage secureStorage=const FlutterSecureStorage();
-  bool isLoading=true;
+  bool isLoading=false;
 
 Future  loginAdmin({
  required String email,
@@ -49,7 +49,7 @@ http.Response response;
     String token=tokenSaver["token"];
     secureStorage.write(key: "Token", value: token);
     // ignore: use_build_context_synchronously
-    Navigator.push(context, MaterialPageRoute(builder: (context) =>const AdminHomePage(),));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => AdminHomePage(),));
    final jsonerespond = jsonDecode(response.body);
 
    log(jsonerespond);
@@ -71,4 +71,8 @@ log(e.toString());
 // log( getError(error, context));
 }
 }
+
+    // Future getlogged() async{
+    //  await setlogged(value)
+    // }
 }
