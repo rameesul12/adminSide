@@ -7,7 +7,7 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../controller/provider/apicallsProvider/apigetfunction.dart';
+import '../../controller/provider/apicallsProvider/api_get_function.dart';
 import '../../controller/provider/biometricProvider/biometric_provider.dart';
 
 class SplashScreen extends StatelessWidget {

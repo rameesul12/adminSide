@@ -40,6 +40,7 @@ Future apiGet(BuildContext context)async{
      
       Map<String, dynamic> jsonValue = jsonDecode(response.body);
         movieList = (jsonValue["data"] as List).map((e) => SearchResult.fromJson(e)).toList();
+        notifyListeners();
       // SearchResp searchResult=SearchResp.fromJson(jsonValue);
       // for (var element in searchResult.data) {
       //   movieList.add(element);
@@ -56,6 +57,7 @@ Future apiGet(BuildContext context)async{
         return movieList;
       } else {
         log('No movie data found');
+        // ignore: use_build_context_synchronously
         getError("No movie data found", context);
         return [];
       }

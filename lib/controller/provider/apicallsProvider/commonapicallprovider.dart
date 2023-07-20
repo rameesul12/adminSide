@@ -3,9 +3,14 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:appadmin/controller/provider/dialogues/showdialogue.dart';
+import 'package:appadmin/controller/provider/loginpage/loginPageProvider.dart';
 import 'package:appadmin/model/filimposting/filim_posting.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+import '../../../core/secureStorage/storage_function.dart';
+import '../../../serverSide/apiConfiguration.dart';
+import 'api_get_function.dart';
 
 
 
@@ -72,5 +77,50 @@ Future<List<MovieDetails>>apiGetFunction(String baseUrl,BuildContext context)asy
      log(e.toString());
      return [];
    }
+}
+
+
+
+
+Future deleteApicall(String movieid,int index,BuildContext context)async{
+  
+  
+ var storage=await storageRead(Provider.of<LoginProvider>(context,listen: false).secureStorage);
+ 
+try {
+   http.Response response=await http.post(Uri.parse(ApiConfiguration.baseUrl+ApiConfiguration.deleteMovie),
+ headers: {
+  'Content-Type': 'application/json; charset=UTF-8',
+  'Accept': 'application/json',
+  'Authorization': 'Bearer $storage',
+ },
+ body: jsonEncode(
+  {
+  "_id":movieid
+ },
+ )
+
+//encoding: Encoding.getByName('UTF-8')
+ );
+ //final responseDatas =response.body as Map<int,dynamic>;
+
+//  if (responseDatas["success"]=='success') {
+//    log('${response.body}');
+//    final<dynamic,dynamic> decoded=jsonDecode(responseDatas);
+//  }
+log(response.body);
+log("${response.statusCode}");
+if (response.statusCode==200) {
+  // ignore: use_build_context_synchronously
+  Provider.of<ApiGetMoviesProvider>(context,listen:false ).movieList.removeAt(index);
+  notifyListeners();
+}else{
+  getError("somthing problem in Api delete ", context);
+}
+} catch (e) {
+  // ignore: use_build_context_synchronously
+  getError(e.toString(), context);
+}
+
 }
 }

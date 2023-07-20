@@ -73,15 +73,15 @@ class LoginPage extends StatelessWidget {
                       getError("field Not filled", context);
                     }
                   },
-                  child: Text(
-                    'Login',
-                    style: TextStyle(
-                        color: textwhite, fontWeight: FontWeight.bold),
-                  ),
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
                     backgroundColor: buttonColor,
+                  ),
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(
+                        color: textwhite, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),

@@ -4,7 +4,9 @@ import 'package:appadmin/view/searchScreen/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../controller/provider/apicallsProvider/apigetfunction.dart';
+import '../../controller/provider/apicallsProvider/api_get_function.dart';
+import '../../controller/provider/apicallsProvider/commonapicallprovider.dart';
+import '../../controller/provider/dialogues/showdialogue.dart';
 import '../../core/colors.dart';
 import '../../core/sizedBox.dart';
 
@@ -18,48 +20,52 @@ class FilimAdding extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            sizedH20,
-            const Text(
-              'Movie List',
-              style: TextStyle(
-                  color: textwhite, fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            sizedH20,
-            Consumer<ApiGetMoviesProvider>(
-              builder: (context,value,child) {
-                return Expanded(
-                  child: ListView.separated(
-                    itemCount: value.movieList.length,
-                    separatorBuilder: (context, index) =>
-                        const Divider(color: textFieldBackground),
-                    itemBuilder: (context, index) {
-                      return ListMovies(index: index);
-                    },
-                  ),
-                );
-              }
-            ),
-            Container(
-                width: size.width * 0.4,
-                decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 106, 115, 128),
-                    border: Border.all(color: textwhite),
-                    borderRadius: BorderRadius.circular(10)),
-                child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SearchPage(),
-                          ));
-                    },
-                    child: Text(
-                      'Add Movies',
-                      style: TextStyle(color: textwhite),
-                    ))),
-          ],
+        child: Consumer<ApicallFunction>(
+          builder: (context,value,child) {
+            return Column(
+              children: [
+                sizedH20,
+                const Text(
+                  'Movie List',
+                  style: TextStyle(
+                      color: textwhite, fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                sizedH20,
+                Consumer<ApiGetMoviesProvider>(
+                  builder: (context,value,child) {
+                    return Expanded(
+                      child: ListView.separated(
+                        itemCount: value.movieList.length,
+                        separatorBuilder: (context, index) =>
+                            const Divider(color: textFieldBackground),
+                        itemBuilder: (context, index) {
+                          return ListMovies(index: index);
+                        },
+                      ),
+                    );
+                  }
+                ),
+                Container(
+                    width: size.width * 0.4,
+                    decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 106, 115, 128),
+                        border: Border.all(color: textwhite),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SearchPage(),
+                              ));
+                        },
+                        child: Text(
+                          'Add Movies',
+                          style: TextStyle(color: textwhite),
+                        ))),
+              ],
+            );
+          }
         ),
       ),
     );
@@ -82,7 +88,19 @@ class ListMovies extends StatelessWidget {
             return Container(
               height: size.height * 0.2,
               decoration:
-                  BoxDecoration(border: Border.all(color: textwhite, width: 1)),
+                  BoxDecoration(border: Border.all(color: textwhite.withOpacity(0.2), width: 1),
+                  // color: textwhite,
+                  // boxShadow: [
+                  //   BoxShadow(
+                  //     blurRadius: 1,
+                  //     color: Colors.black,
+                  //     offset: Offset(0.2, 0.2),
+                      
+                  //   )
+                  // ]
+                   ),
+                  
+                  
               child: Row(
                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -118,7 +136,7 @@ class ListMovies extends StatelessWidget {
                                               ),
                         ),
                         SizedBox(
-                          width: size.width*0.5,
+                          width: size.width*0.6,
                           child: Text(
                           'Name:${data.movieList[index].originalTitle}',maxLines: 1,overflow:TextOverflow.ellipsis ,
                           style:const TextStyle(color: textwhite,fontWeight: FontWeight.bold),
@@ -140,17 +158,20 @@ class ListMovies extends StatelessWidget {
                        SizedBox(
                     width: size.width*0.2,
                     height: size.height*0.04,
-                    child: ElevatedButton( 
-                      
-                      onPressed: (){}, child: Text('Delete',style: TextStyle(color:textwhite,fontSize: 9),),
-                    style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.all(0),
-                      backgroundColor: Colors.red,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)
-                      )
-                    ),
-                    ),
+                    child:  ElevatedButton( 
+                          
+                          onPressed: () async{
+                          await  Provider.of<DialoguesProvider>(context,listen: false).deletionDialogue(context, index);
+                          },
+                        style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.all(0),
+                          backgroundColor: Colors.red,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5)
+                          )
+                        ), child:const Text('Delete',style: TextStyle(color:textwhite,fontSize: 9),),
+                        )
+                     
                   ),
                     ],
                   ),

@@ -9,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import '../../controller/provider/FilimSection/filim_adding.dart';
-import '../../controller/provider/apicallsProvider/apigetfunction.dart';
+import '../../controller/provider/apicallsProvider/api_get_function.dart';
+import '../../controller/provider/dialogues/showdialogue.dart';
 import '../../model/filimposting/filim_posting.dart';
 import '../../serverSide/filimgeting/filim_getting.dart';
 
