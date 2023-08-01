@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:appadmin/view/searchScreen/search_screen.dart';
+import 'package:appadmin/view/filimadding/searchScreen/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -46,10 +46,10 @@ class FilimAdding extends StatelessWidget {
                   }
                 ),
                 Container(
-                    width: size.width * 0.4,
+                    width: size.width * 0.8,
                     decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 106, 115, 128),
-                        border: Border.all(color: textwhite),
+                        color:buttonColor,
+                       // border: Border.all(color: textwhite),
                         borderRadius: BorderRadius.circular(10)),
                     child: TextButton(
                         onPressed: () {
@@ -59,10 +59,11 @@ class FilimAdding extends StatelessWidget {
                                 builder: (context) => SearchPage(),
                               ));
                         },
-                        child: Text(
+                        child:const Text(
                           'Add Movies',
                           style: TextStyle(color: textwhite),
                         ))),
+                        sizedH10
               ],
             );
           }
@@ -129,17 +130,18 @@ class ListMovies extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                         SizedBox(
-                          width: size.width*0.5,
-                          child: Text(
-                                              'MovieId:'+'${data.movieList[index].movieId},',maxLines: 1,overflow:TextOverflow.ellipsis ,
-                          style: TextStyle(color: textwhite,fontWeight: FontWeight.bold),
-                                              ),
-                        ),
-                        SizedBox(
                           width: size.width*0.6,
                           child: Text(
-                          'Name:${data.movieList[index].originalTitle}',maxLines: 1,overflow:TextOverflow.ellipsis ,
-                          style:const TextStyle(color: textwhite,fontWeight: FontWeight.bold),
+                          '${data.movieList[index].originalTitle}',maxLines: 1,overflow:TextOverflow.ellipsis ,
+                          style:const TextStyle(color: textwhite,fontWeight: FontWeight.bold,fontSize: 20),
+                                              ),
+                        ),
+                        sizedH10,
+                        SizedBox(
+                          width: size.width*0.5,
+                          child: Text(
+                                              'MovieId:''${data.movieList[index].movieId},',maxLines: 1,overflow:TextOverflow.ellipsis ,
+                          style:const TextStyle(color: textwhite,fontWeight: FontWeight.bold,),
                                               ),
                         ),
                     
@@ -164,7 +166,7 @@ class ListMovies extends StatelessWidget {
                           await  Provider.of<DialoguesProvider>(context,listen: false).deletionDialogue(context, index);
                           },
                         style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.all(0),
+                        padding:const EdgeInsets.all(0),
                           backgroundColor: Colors.red,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5)

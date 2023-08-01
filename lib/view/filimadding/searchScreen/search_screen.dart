@@ -8,11 +8,10 @@ import 'package:appadmin/model/filimAdding/filimresp.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import '../../controller/provider/FilimSection/filim_adding.dart';
-import '../../controller/provider/apicallsProvider/api_get_function.dart';
-import '../../controller/provider/dialogues/showdialogue.dart';
-import '../../model/filimposting/filim_posting.dart';
-import '../../serverSide/filimgeting/filim_getting.dart';
+import '../../../controller/provider/FilimSection/filim_adding.dart';
+import '../../../controller/provider/apicallsProvider/api_get_function.dart';
+import '../../../model/filimposting/filim_posting.dart';
+import '../../../serverSide/filimgeting/filim_getting.dart';
 
 // ignore: must_be_immutable
 class SearchPage extends StatelessWidget {
@@ -78,7 +77,6 @@ class SearchPage extends StatelessWidget {
                      builder: (context,value,child) {
                        return ListView.builder(
                         itemCount:suggestion.length,
-                        
                         itemBuilder:(context, index) {
                          
                           return  InkWell(

@@ -1,7 +1,9 @@
+import 'package:appadmin/view/banner_Page/banner_homepage.dart';
+import 'package:appadmin/view/vouchers/voucher_home_page.dart';
 import 'package:flutter/material.dart';
 import '../../core/colors.dart';
 import '../../core/sizedBox.dart';
-import '../filimadding/filimAdding.dart';
+import '../filimadding/filim_adding.dart';
 
 class AdminHomePage extends StatelessWidget {
    AdminHomePage({Key? key});
@@ -37,15 +39,22 @@ class AdminHomePage extends StatelessWidget {
                   InkWell(
                   onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) =>const FilimAdding(),)),
                     child:const GridviewCard(
-                      image: 'assets/images/video-tutorial.png',
+                      image: 'assets/images/filimaAdding.gif',
                       name: 'Filim Adding',
                     ),
                   ),
-                  InkWell(
-                 //   onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ShowListPage() ,)),
-                    child:const GridviewCard(
-                      image: 'assets/images/discount-voucher.png',
+                    InkWell(
+                 onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const VouchersHomepage() ,)),
+                    child:GridviewCard(
+                      image: 'assets/images/Vouchers.gif',
                       name: 'Vouchers',
+                    ),
+                  ),
+                    InkWell(
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const BannerHome() ,)),
+                    child: const GridviewCard(
+                      image: 'assets/images/bannerimage.gif',
+                      name: 'Banner',
                     ),
                   ),
                 // const  GridviewCard(
@@ -85,6 +94,7 @@ class GridviewCard extends StatelessWidget {
       width: size.width * 0.2,
       decoration: BoxDecoration(
         color:textFieldBackground,
+        borderRadius: BorderRadius.circular(10)
       //  image: DecorationImage(image: AssetImage(image))
       ),
       child: Column(
@@ -102,8 +112,8 @@ class GridviewCard extends StatelessWidget {
           Text(
             name,
             style: const TextStyle(
-              color: colorTextwhite,
-              fontSize: 15,
+              color: Colors.white,
+              fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),

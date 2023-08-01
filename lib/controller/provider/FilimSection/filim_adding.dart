@@ -18,9 +18,10 @@ class FilimAddingPrvider extends ChangeNotifier{
      List<SearchResult>list=[];
     bool isLoading=true;
    
-
-
+//===========================================
 //filim searching from here title only take////
+//============================================
+
  Future<List<SearchResult>> filimGetting(String filimTitle, BuildContext context) async {
   var storage = await storageRead(Provider.of<LoginProvider>(context, listen: false).secureStorage);
   String payload = filimTitle;

@@ -1,4 +1,5 @@
 
+import 'package:appadmin/core/colors.dart';
 import 'package:appadmin/core/sizedBox.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -11,7 +12,7 @@ import '../apicallsProvider/commonapicallprovider.dart';
 
 
 getError(String error,BuildContext ctx){
- return ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(backgroundColor: Colors.black,content: Text(error,style: TextStyle(color: Colors.white),)));
+ ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(backgroundColor: Colors.black,content: Text(error,style: TextStyle(color: Colors.white),)));
 }
 
 class DialoguesProvider extends ChangeNotifier{
@@ -82,4 +83,45 @@ lottieshowing(BuildContext context){
   },);
     
 }
+
+
+deletionBannerDialogue(BuildContext context,int index)async{
+  
+  showDialog(context: context,
+   builder:(context) {
+     return SimpleDialog(
+    backgroundColor: textFieldBackground,
+      children: [
+        SizedBox(
+          height: 94,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+          
+               const   Text('Do you want to Delete this Banner',style: TextStyle(fontWeight: FontWeight.bold,color: textwhite),),
+                  sizedH10,
+                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+            TextButton(onPressed: ()async{
+               
+               // ignore: use_build_context_synchronously
+               Navigator.pop(context);
+            }, 
+            child: const Text('Delete')),
+            TextButton(onPressed: (){
+              Navigator.pop(context);
+            }, child: const Text('No'))
+                  ],
+                 )
+              ],
+            ),
+          ),
+        )
+      ],
+     );
+   },);
+}
+
 }
