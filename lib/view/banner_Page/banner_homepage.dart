@@ -58,7 +58,8 @@ class BannerHome extends StatelessWidget {
                            );
                      },
                       separatorBuilder:(context, index) => sizedH10,
-                       itemCount: data.bannerList.length ),
+                       itemCount: data.bannerList.length 
+                       ),
                   );
                 }
               );

@@ -14,11 +14,11 @@ class BioMetricProvider extends ChangeNotifier {
 
 await Future.delayed(const Duration(seconds: 3));
 
-    final SharedPreferences shared_preferences =
+    final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
-    bool? status = shared_preferences.getBool('login');
+    bool? status = sharedPreferences.getBool('login');
 if (status==null) {
-await  shared_preferences.setBool('login',false );
+await  sharedPreferences.setBool('login',false );
  
 }
     if (status==false) {

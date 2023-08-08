@@ -18,9 +18,10 @@ class FilimAddingPrvider extends ChangeNotifier{
      List<SearchResult>list=[];
     bool isLoading=true;
    
-//===========================================
-//filim searching from here title only take////
 //============================================
+//filim searching from here title only take  ////
+//============================================
+
 
  Future<List<SearchResult>> filimGetting(String filimTitle, BuildContext context) async {
   var storage = await storageRead(Provider.of<LoginProvider>(context, listen: false).secureStorage);
@@ -37,7 +38,7 @@ class FilimAddingPrvider extends ChangeNotifier{
         'Accept': 'application/json',
         'Authorization': 'Bearer $storage',
       },
-    );
+   );
     log(response.body);
     log("${response.statusCode}");
 
@@ -54,7 +55,7 @@ class FilimAddingPrvider extends ChangeNotifier{
   //  searchResultsList =(values["results"] as List).map((e) =>SearchResult.fromJson(e)).toList();
       
       notifyListeners();
-      log('value indo${searchResultsList}');
+      log('value indo$searchResultsList');
       
       return searchResultsList;
     } else {
@@ -68,11 +69,12 @@ class FilimAddingPrvider extends ChangeNotifier{
 }
 //************************************************** */
 //search displaying///
-//=========================
+//================================================== */
+
   List<SearchResult>displaying(String filimName,List<SearchResult>array){
    
 list.clear();
-  log("arrayile data ${array}");
+  log("arrayile data $array");
  for (var element  in array ) {
   log("data of element$element");
     
@@ -93,7 +95,9 @@ return list;
 //============================
 //after search result posting
 //===========================
- Future filimPost(List<MovieDetails> movieDetails,BuildContext context) async{
+
+ Future filimPost(List<MovieDetails> movieDetails,BuildContext context)  async{
+
   var storage=await storageRead(Provider.of<LoginProvider>(context,listen: false).secureStorage);
  //dynamic header=
      Map<String,dynamic> payload={
@@ -118,8 +122,8 @@ return list;
  );
  log(response.body);
  log('${response.statusCode}');
+
    if (response.statusCode==200) {
-     
   Map <dynamic,dynamic> decoded=jsonDecode(response.body);
    isLoading=false;
   notifyListeners();

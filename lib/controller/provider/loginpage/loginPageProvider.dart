@@ -47,6 +47,7 @@ http.Response response;
   if (response.statusCode == 201) {
     Map<String,dynamic>tokenSaver=jsonDecode(response.body);
     String token=tokenSaver["token"];
+    log(token);
     secureStorage.write(key: "Token", value: token);
     // ignore: use_build_context_synchronously
     Navigator.push(context, MaterialPageRoute(builder: (context) => AdminHomePage(),));

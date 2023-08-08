@@ -1,5 +1,7 @@
 
 
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:appadmin/view/dashbord/homepage.dart';
 import 'package:appadmin/view/loginPage/loginPage.dart';
 import 'package:flutter/material.dart';
@@ -33,20 +35,19 @@ class SplashScreen extends StatelessWidget {
 
  showingScreen(BuildContext context)async{
  
- await Future.delayed(Duration(seconds: 2));
+ await Future.delayed(const Duration(seconds: 2));
  
 
- // ignore: use_build_context_synchronously
  Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage() ,));
 }
 
     Future<void> getlogged(BuildContext context)async{
-await Future.delayed(Duration(seconds: 2));
-  final SharedPreferences shared_preferences=await SharedPreferences.getInstance();
-  bool? value=shared_preferences.getBool('login');
+await Future.delayed(const Duration(seconds: 2));
+  final SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
+  bool? value=sharedPreferences.getBool('login');
 
   if (value==true) {
-    // ignore: use_build_context_synchronously
+
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AdminHomePage(),));
   }else{
     await showingScreen(context);

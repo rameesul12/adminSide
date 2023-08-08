@@ -118,7 +118,7 @@ messageDialogues(String movieName,BuildContext context)async{
  // int index=0;
   List<MovieDetails>movieInfo=[];
   showDialog(
-    context:context ,
+    context:context,
     builder: (context) {
       return   AlertDialog(
           title: Text("Do You Want to Add ${movieName}Movie",style:const TextStyle(color: blackColor,fontSize: 20,fontWeight: FontWeight.bold),),
