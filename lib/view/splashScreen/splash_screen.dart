@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../controller/provider/apicallsProvider/api_get_function.dart';
 import '../../controller/provider/biometricProvider/biometric_provider.dart';
+import '../../controller/provider/users_controller/manage_users_controller.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -21,7 +22,9 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Provider.of<ApiGetMoviesProvider>(context,listen: false).apiGet(context);
  getlogged(context);
- Provider.of<BioMetricProvider>(context,listen: false).biometricVerification(context);
+                    Provider.of<ManageUsersController>(context,listen: false).getAllUsers();
+
+ // Provider.of<BioMetricProvider>(context,listen: false).biometricVerification(context);
     return  Scaffold(
       body: Center(
         child: SizedBox(

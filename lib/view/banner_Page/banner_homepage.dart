@@ -16,7 +16,7 @@ class BannerHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size=MediaQuery.of(context).size;
+   // final Size size=MediaQuery.of(context).size;
    
     final provider=Provider.of<FirebaseProvider>(context,listen: false);
      Size sized=MediaQuery.of(context).size;
@@ -71,7 +71,7 @@ class BannerHome extends StatelessWidget {
                        
               }
                        }else{
-                     return Center(child: CircularProgressIndicator());
+                     return const Center(child: CircularProgressIndicator());
                        }
               
              }

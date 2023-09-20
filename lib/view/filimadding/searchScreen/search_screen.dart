@@ -1,5 +1,7 @@
 
 
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:developer';
 import 'package:appadmin/controller/provider/debouncer/debouncer.dart';
 import 'package:appadmin/core/colors.dart';
@@ -23,7 +25,7 @@ class SearchPage extends StatelessWidget {
 
 
 
-  DebouncerProvider _debouncerProvider=DebouncerProvider();
+  final DebouncerProvider _debouncerProvider=DebouncerProvider();
   
 
   @override
@@ -47,7 +49,7 @@ class SearchPage extends StatelessWidget {
                 textAlign: TextAlign.start,
                 decoration: InputDecoration(
                   hintText:"Search Movie",
-                   prefixIcon:Icon(Icons.arrow_back,color: Colors.white,),
+                   prefixIcon:const Icon(Icons.arrow_back,color: Colors.white,),
                   hintStyle:const TextStyle(color: Colors.white38,textBaseline: TextBaseline.alphabetic,),
                   filled: true,
                   border: OutlineInputBorder(
@@ -129,17 +131,13 @@ messageDialogues(String movieName,BuildContext context)async{
                   
           
 //Provider.of<DialoguesProvider>(context,listen: false).lottieshowing(context);
-               movieInfo= await searchGetting(context,movieName);
+               movieInfo= await ApiServices(). searchGetting(context,movieName);
                log(movieInfo.toString());
-                 // ignore: use_build_context_synchronously
                  await provider.filimPost(movieInfo, context);
                 await providerGet.apiGet(context);
                await  successAlert(context,movieName); 
-                 // ignore: use_build_context_synchronously
                  Navigator.pop(context);
-                 // ignore: use_build_context_synchronously
                  Navigator.pop(context);
-         // ignore: use_build_context_synchronously
         
        // log('${providerGet.movieList[0].id}');
               

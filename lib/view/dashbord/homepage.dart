@@ -1,9 +1,12 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:appadmin/view/banner_Page/banner_homepage.dart';
 import 'package:appadmin/view/vouchers/voucher_home_page.dart';
 import 'package:flutter/material.dart';
 import '../../core/colors.dart';
 import '../../core/sizedBox.dart';
 import '../filimadding/filim_adding.dart';
+import '../user_section/user_section_screen.dart';
 
 class AdminHomePage extends StatelessWidget {
    AdminHomePage({Key? key});
@@ -62,7 +65,17 @@ class AdminHomePage extends StatelessWidget {
                 //     name: 'Revenue',
                 //   ),
              
-              
+                 InkWell(
+                 onTap: () async{
+                  
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const ManageUsersScreen() ,));
+                 
+                 },
+                    child:const GridviewCard(
+                      image: 'assets/images/user2.png',
+                      name: 'Users',
+                    ),
+                  ),
                 ],
               ),
             ),

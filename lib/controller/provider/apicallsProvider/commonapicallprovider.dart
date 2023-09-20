@@ -1,5 +1,7 @@
 
 
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'dart:developer';
 import 'package:appadmin/controller/provider/dialogues/showdialogue.dart';
@@ -69,7 +71,6 @@ Future<List<MovieDetails>>apiGetFunction(String baseUrl,BuildContext context)asy
     notifyListeners();
     return results;
     }else{
-      // ignore: use_build_context_synchronously
       getError("api respond not getting", context);
       return [];
     }
@@ -111,14 +112,15 @@ try {
 log(response.body);
 log("${response.statusCode}");
 if (response.statusCode==200) {
-  // ignore: use_build_context_synchronously
+
   Provider.of<ApiGetMoviesProvider>(context,listen:false ).movieList.removeAt(index);
   notifyListeners();
 }else{
+
   getError("somthing problem in Api delete ", context);
+  
 }
 } catch (e) {
-  // ignore: use_build_context_synchronously
   getError(e.toString(), context);
 }
 
